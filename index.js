@@ -19,6 +19,19 @@ const deploy = async() => {
   console.log("the depoyment transaction is----->", contract.deployTransaction);
   console.log("the receipt is ------->", transactionReceipt);
 
+  const nonce = await wallet.getTransactionCount();
+  const tx = {
+    nonce: nonce,
+    gasPrice: 2000000000,
+    gasLimit: 1000000,
+    to: null,
+    value: 0,
+    data: "",
+    chainId: 1337,
+
+  };
+  
+
 };
 
 
