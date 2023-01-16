@@ -7,7 +7,7 @@ const wallet = new ethers.Wallet(
   provider
 );
 
-const deploy = async() => {
+const deploy = async () => {
   const abi = fs.readFileSync("./Mywallet_sol_Wallet.abi", "utf-8");
   const bin = fs.readFileSync("Mywallet_sol_Wallet.bin", "utf-8");
   const contractFactory = new ethers.ContractFactory(abi, bin, wallet);
@@ -15,25 +15,21 @@ const deploy = async() => {
   const contract = await contractFactory.deploy();
   console.log("---------->", contract);
 
-  const transactionReceipt =await contract.deployTransaction.wait(1);
+  const transactionReceipt = await contract.deployTransaction.wait(1);
   console.log("the depoyment transaction is----->", contract.deployTransaction);
   console.log("the receipt is ------->", transactionReceipt);
 
-  const nonce = await wallet.getTransactionCount();
-  const tx = {
-    nonce: nonce,
-    gasPrice: 2000000000,
-    gasLimit: 1000000,
-    to: null,
-    value: 0,
-    data: "",
-    chainId: 1337,
+  // const nonce = await wallet.getTransactionCount();
+  // const tx = {
+  //   nonce: nonce,
+  //   gasPrice: 2000000000,
+  //   gasLimit: 1000000,
+  //   to: null,
+  //   value: 0,
+  //   data: "",
+  //   chainId: 1337,
 
-  };
-  
-
+  // };
 };
 
-
 deploy();
-
